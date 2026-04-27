@@ -1,6 +1,6 @@
 # Framework Library
 
-This library is intentionally broad. The partner should use it as a menu, then narrow aggressively with the selection rubric. Prefer a few well-fit frameworks over exhaustive application.
+This library is intentionally broad. Prefer a few well-fit frameworks over exhaustive application. The library is strongest on product strategy, growth, and prioritization, with growing coverage of design, technology feasibility, and execution.
 
 ## Framework Card Format
 
@@ -42,6 +42,17 @@ Use these as shortcuts when judging whether a framework is being applied well:
 - **Systems/Causal Loops**: names system boundary, variables, relationships, feedback loops, delays, and leverage points.
 - **Decision Matrix**: uses comparable options, independent criteria, weighted priorities, evidence-backed scores, and sensitivity checks.
 - **Premortem**: assumes failure happened, works backward to plausible causes, and assigns mitigations.
+- **Card Sorting and Tree Testing**: card sorting is generative and uses open or closed sorts to surface user mental models. Tree testing is evaluative and uses task-based findability tests on a labeled hierarchy. Both report stable clusters and first-click paths, not single perfect structures.
+- **Norman Action Cycle**: names the seven stages from goal to evaluation. Identifies whether the breakdown is in the gulf of execution, where the user cannot figure out what to do, or the gulf of evaluation, where the user cannot tell what happened.
+- **Microinteractions**: every microinteraction has a trigger, rules, feedback, and loops or modes. Good microinteractions reuse what is already on screen, prevent error states, and are calibrated to whether the event is critical or background.
+- **UI State Inventory**: every screen or component has at minimum empty, loading, partial, success, error, and offline states. Each state has a clear next action when one is possible. Skeleton states preferred over spinners for content that has predictable shape.
+- **Atomic Design**: components nest hierarchically from atoms through molecules, organisms, templates, and pages. Modern teams treat the labels as flexible and extend with design tokens for visual properties.
+- **Design Tokens**: tokens live in three layers, primitive (raw values), semantic (intent), and component (specific use). Theming is a swap of the semantic layer; components should not reference primitives directly.
+- **POUR**: accessible content is perceivable, operable, understandable, and robust. Each principle maps to a different class of human limitation and assistive technology compatibility.
+- **Persona Spectrum**: maps a permanent disability to related temporary and situational mismatches, expanding the addressable benefit of inclusive design solutions.
+- **Design Critique**: separates observation from judgment, and feedback from solution. Frameworks like LIWI (I Like, I Wish, What If) and SBI (Situation, Behavior, Impact) keep critique specific, balanced, and actionable.
+- **Architecture Decision Record**: captures one significant decision in context, decision, status, and consequences. Append-only, lightweight, stored next to the code.
+- **C4 Model**: describes software architecture at four zoom levels, context, container, component, code. Each level has an audience and a clear scope.
 
 ## Common Wrong Turns
 
@@ -53,6 +64,16 @@ Use these as shortcuts when judging whether a framework is being applied well:
 - Do not use a North Star metric as a replacement for strategy.
 - Do not use a decision matrix when the options are not comparable or when a small experiment would reduce uncertainty faster.
 - Do not use positioning as tagline writing; positioning precedes messaging.
+- Do not use card sorting to evaluate an existing structure. Use tree testing.
+- Do not use tree testing to discover a new structure. Use card sorting.
+- Do not jump to high-fidelity design before resolving information architecture. Layout protects bad structure.
+- Do not design only the success state. Empty, loading, error, and edge cases reveal whether the design works in real conditions.
+- Do not let component tokens reference primitive tokens directly. Theming will break and a rebrand will touch every component.
+- Do not equate accessibility with WCAG conformance alone. Conformance is a floor, not a ceiling, and inclusive design extends past disability into temporary and situational use.
+- Do not use a personas exercise as a substitute for talking to people with the abilities you are designing for.
+- Do not use design critique to redesign the work in the room. Critique surfaces issues; redesign happens after.
+- Do not write an architecture decision record after the fact for a decision no one would revisit. Reserve them for decisions that matter and will be challenged or reused.
+- Do not draw one architecture diagram for all audiences. Match zoom level to who is reading.
 
 ## Product Discovery And Customer Understanding
 
@@ -121,22 +142,7 @@ Use these as shortcuts when judging whether a framework is being applied well:
 - **Avoid when**: the question is business model strategy rather than experience quality.
 - **Output**: UX metric tree and measurement plan.
 
-### Task Analysis
-- **Use when**: improving a workflow, productivity tool, or user task completion.
-- **Avoid when**: the problem is market-level strategy.
-- **Output**: task steps, decisions, friction, error points, and redesign opportunities.
-
-### Cognitive Walkthrough
-- **Use when**: checking whether a user can understand and complete a flow without instruction.
-- **Avoid when**: the team needs broad strategic discovery.
-- **Output**: step-by-step usability risks and fixes.
-
-### Heuristic Evaluation
-- **Use when**: quickly finding usability issues against established principles.
-- **Avoid when**: replacing user testing for high-stakes workflows.
-- **Output**: prioritized usability findings and recommended fixes.
-
-## Design And Innovation
+## Design Process
 
 ### Double Diamond
 - **Use when**: the team needs a complete design process from problem discovery to solution delivery.
@@ -177,6 +183,201 @@ Use these as shortcuts when judging whether a framework is being applied well:
 - **Use when**: matching customer jobs, pains, and gains to product value.
 - **Avoid when**: the team lacks a target customer.
 - **Output**: customer profile, value map, and fit gaps.
+
+## Information Architecture And Structure
+
+### Card Sorting
+- **Use when**: the team needs to discover how users would naturally group content, features, or product offerings before committing to a navigation or taxonomy.
+- **Avoid when**: a structure is already in place and the question is whether users can find things in it; use tree testing instead. Also avoid when content is so technical that participants have no basis for grouping.
+- **Inputs**: a list of 30 to 50 items written in plain language, a target user segment, and at least 15 to 30 participants for stable patterns.
+- **Output**: clusters of items, candidate category labels, a dendrogram of grouping similarity, and a draft hierarchy.
+- **Good looks like**: items written at consistent granularity in plain language, open sort used for discovery, closed sort reserved for narrow validation, dendrograms read for stable clusters rather than perfect agreement.
+- **Common failures**: cards written in internal jargon, mixed granularity producing meaningless clusters, recruiting participants who are not target users, treating the result as a finished IA rather than a starting point.
+
+### Tree Testing
+- **Use when**: a draft or live navigation needs to be evaluated for findability before launch, or to identify where users get lost in an existing structure.
+- **Avoid when**: there is no candidate hierarchy yet; do card sorting first. Also avoid when the failure is more likely a labeling problem than a structure problem; consider first-click testing or content review.
+- **Inputs**: a labeled tree, a set of representative tasks, and 50 or more participants per user segment for diverse coverage.
+- **Output**: success rate, directness, time on task, and first-click and path heatmaps showing where users diverge from the intended route.
+- **Good looks like**: tasks framed as user goals not feature names, success measured by reaching the right destination not the shortest path, multiple findable paths treated as a feature rather than a bug.
+- **Common failures**: writing tasks that telegraph the answer through label matching, treating low directness as proof the whole tree is wrong when it might be one ambiguous label, optimizing for one perfect path rather than recoverable navigation.
+
+### Mental Models
+- **Use when**: there is a gap between how users think a system works and how it actually works, and that gap is causing errors, abandonment, or support load.
+- **Avoid when**: the question is purely about visual design or a single feature; mental model work is heavyweight and rewards problems with broad scope.
+- **Inputs**: contextual interviews or task observations, a candidate domain to model, and willingness to revise either the system or its surface to match user expectation.
+- **Output**: a diagram of user beliefs, system behaviors, and the mismatches between them, with a list of interventions to close the gap.
+- **Good looks like**: the model captures user vocabulary not internal vocabulary, mismatches are categorized as either system changes or communication changes, the resulting interventions are testable.
+- **Common failures**: drawing a system diagram and calling it a mental model, treating user misconceptions as bugs in the user, modeling everything when the gap is local.
+
+### Object-Oriented UX
+- **Use when**: an interface has multiple object types (orders, customers, articles, classes, students) and the team is debating page structures, navigation, or flows in isolation from those objects.
+- **Avoid when**: the product is a linear funnel or a single-task tool. Object-oriented UX is overhead unless the system has nouns the user reasons about.
+- **Inputs**: a candidate list of objects, their attributes, their relationships, and the actions a user wants to take on each.
+- **Output**: an object map showing object types, their fields, their relationships, and a derived navigation and screen inventory.
+- **Good looks like**: every screen ties to one or more objects, attributes are collected per object rather than per screen, navigation reflects relationships between objects.
+- **Common failures**: extracting objects from existing screens rather than from user goals, conflating an object with a feature, mapping attributes nobody actually needs.
+
+## Interaction Design
+
+### Norman Action Cycle
+- **Use when**: a flow has poor completion or recovery, and the team needs a structured way to find whether the breakdown is in figuring out what to do, doing it, or interpreting the result.
+- **Avoid when**: the problem is strategic or research-shaped rather than an interaction breakdown.
+- **Inputs**: a representative task, a working artifact or prototype, and observation of users attempting the task.
+- **Output**: a stage-by-stage account of where attention, action, perception, and interpretation break down, with targeted fixes (better signifiers, better feedback, better mapping).
+- **Good looks like**: the diagnosis names a specific stage, the gulf is identified as execution or evaluation, the fix matches the gulf rather than redesigning the whole flow.
+- **Common failures**: treating every breakdown as an execution problem and adding more affordances when feedback was the issue, or vice versa.
+
+### Microinteractions Anatomy
+- **Use when**: a small repeated moment in the product (a toggle, a like, a save, a notification, a status change) needs to feel reliable, fast, and right.
+- **Avoid when**: the bigger flow is broken; fixing a microinteraction inside a broken flow is polish on the wrong layer.
+- **Inputs**: a clearly bounded moment with one job, an understanding of how often it fires, and the technical surface that produces the trigger.
+- **Output**: a specification for trigger (manual or system), rules (what can and cannot happen), feedback (visual, auditory, haptic), and loops or modes (how it changes over time or in special contexts).
+- **Good looks like**: feedback weight matches event importance (a save toast is not a system alert), nothing starts from a blank zero state when the system already knows something, modes used sparingly and clearly entered and exited.
+- **Common failures**: adding animation as decoration rather than feedback, missing feedback for a system trigger that the user never initiated, overusing modes so users lose track of which one they are in.
+
+### UI State Inventory
+- **Use when**: designing or reviewing any data-bearing screen or component, or auditing existing work for production readiness.
+- **Avoid when**: pure brand or marketing layouts that do not load or change content.
+- **Inputs**: the screen or component in question, the data it depends on, and an honest list of what can fail or be missing.
+- **Output**: a complete set of state designs covering at minimum empty (first use, cleared, no results), loading (initial, refresh, partial), success (typical, dense, sparse), error (recoverable, fatal, network), and offline. Each state has copy, an action when one is possible, and a transition rule.
+- **Good looks like**: empty states answer "what should I do now," loading states match expected duration (skeleton for predictable shape, spinner for unknown, progress for long), error messages name the problem in user terms and offer a path forward, no flicker between states under one second.
+- **Common failures**: designing only the success state with rich data, using a generic spinner when the shape is predictable, error copy that exposes raw system errors, no thought given to no-results-after-filter as a distinct empty state.
+
+### Affordances And Signifiers
+- **Use when**: users do not realize an element is interactive, or interact with elements that are not, or use the wrong gesture.
+- **Avoid when**: discovery is fine and the issue is downstream in the flow.
+- **Inputs**: the surface in question, the gestures or input modalities available, and observation of misclicks or missed actions.
+- **Output**: a revised design where signifiers (visual cues) make affordances (possible actions) discoverable, with an explicit list of what is interactive and how the user knows.
+- **Good looks like**: a person not on the team can predict what is clickable from a static screenshot, hover and focus and pressed states are designed not assumed, no false affordances on decorative elements.
+- **Common failures**: mistaking minimalism for clarity, designing for the user's second use rather than first use, assuming hover states cover discovery on touch devices.
+
+## Design Systems And Visual Architecture
+
+### Atomic Design
+- **Use when**: the team is building or organizing a component library and needs a shared mental model for how small parts compose into larger structures.
+- **Avoid when**: the product has fewer than 10 reusable components, or the team is litigating chemistry labels rather than building.
+- **Inputs**: an existing or planned UI, a willingness to name components by composition rather than feature.
+- **Output**: a component hierarchy from foundational elements to full pages, with rules for what belongs at each level and how levels reference each other.
+- **Good looks like**: the labels (atoms, molecules, organisms, templates, pages) help the team communicate, not constrain it. Composition rules are clear: lower levels never depend on higher levels.
+- **Common failures**: arguing whether something is an atom or a molecule for hours, taking the chemistry analogy literally, forcing a flat library into a strict hierarchy when the team would be served by a flat or feature-grouped structure.
+
+### Design Token Architecture
+- **Use when**: the system needs to support theming, dark mode, multi-brand, or accessibility variants, or when a rebrand has touched hundreds of components.
+- **Avoid when**: the product is single-brand, single-theme, and unlikely to change. Tokens add overhead that pays off through change.
+- **Inputs**: the visual properties used across the system (color, spacing, typography, radius, shadow, motion), the themes or brands that need to coexist, and the platforms tokens must reach (web, native, email).
+- **Output**: a layered token system with primitive (raw values), semantic (intent like color-text-primary), and component-level (button-bg-default) tiers, plus a transformation pipeline to each platform.
+- **Good looks like**: components reference semantic tokens, semantic tokens reference primitives, theming is a swap of the semantic layer, naming is intent-based not value-based (color-action-primary not color-blue-500).
+- **Common failures**: skipping the semantic layer so components reference primitives directly, value-based names that lie when the value changes, building component tokens for every component before the semantic layer is stable.
+
+### Component API Design
+- **Use when**: a reusable component is being designed and the team needs to decide its props, variants, slots, and states before consumers build on it.
+- **Avoid when**: the surface is one-off and unlikely to be reused. Designing a flexible API for one user is overhead.
+- **Inputs**: a list of intended use cases, the consumers of the component (designers, engineers, product teams), and the platforms it must run on.
+- **Output**: a documented API with named props, allowed values, default states, slot or composition rules, accessibility requirements, and a list of explicitly unsupported variations.
+- **Good looks like**: the component handles its core use cases without consumer escape hatches, variants are restricted not unlimited, compound components compose explicitly, the unsupported list is published.
+- **Common failures**: adding a prop for every request rather than questioning the request, exposing every internal style as a prop, undocumented escape hatches that consumers rely on and that block future changes.
+
+## Accessibility And Inclusion
+
+### POUR (WCAG Principles)
+- **Use when**: building or auditing any interface that real users will use, especially one subject to legal accessibility requirements.
+- **Avoid when**: brand exploration or mood work; POUR applies once functional UI exists.
+- **Inputs**: the interface, the relevant WCAG version (2.2 is current), and access to assistive technologies for testing (screen reader, keyboard-only, voice).
+- **Output**: a conformance assessment by principle, a prioritized remediation list, and ongoing rules for new work.
+- **Good looks like**: each issue is mapped to a specific success criterion, severity is judged by user impact not just conformance, fixes are durable (built into components and tokens) rather than per-screen patches.
+- **Common failures**: treating POUR as a one-time audit rather than an ongoing practice, focusing only on color contrast because it is easy to test, conflating WCAG conformance with usability for disabled users, ignoring keyboard focus order.
+
+### Persona Spectrum
+- **Use when**: the team is designing for ability, sensory, or cognitive variation and needs to expand a single persona into a range of permanent, temporary, and situational conditions.
+- **Avoid when**: used as a substitute for involving disabled users in research and decisions.
+- **Inputs**: a target permanent condition (mobility, vision, hearing, cognition), an understanding of the related temporary conditions (injury, illness) and situational conditions (environment, distraction, multitasking).
+- **Output**: a spectrum mapping the related conditions and a design brief that names which interventions help across the spectrum (solve for one, extend to many).
+- **Good looks like**: the spectrum drives concrete design constraints (target sizes, contrast ratios, error tolerances), informed by research with people who have the permanent condition.
+- **Common failures**: simulating a disability with a blindfold or earplug instead of consulting people who live with it, using the spectrum to soften the case for accessibility ("everyone benefits") rather than to strengthen it.
+
+### Inclusive Design Exclusion Mapping
+- **Use when**: a team needs to find who their current solution leaves out, especially before validating with a representative-but-narrow user sample.
+- **Avoid when**: the team is unwilling to change anything in response. Exclusion mapping is uncomfortable on purpose.
+- **Inputs**: a current design or product, a description of the assumed user, and willingness to identify mismatches honestly.
+- **Output**: a list of mismatches between people and the design, categorized by whether the cause is the design, the environment, the social context, or the technology, plus interventions for each.
+- **Good looks like**: exclusions are stated specifically and without euphemism (a person using a screen reader cannot complete checkout because the form labels are missing), interventions name who they help and how the team will know it worked.
+- **Common failures**: producing a list of vague concerns no one will act on, treating exclusion as an edge case rather than a design failure, conflating exclusion with accessibility (it is broader, including language, literacy, and culture).
+
+## Design Quality And Critique
+
+### LIWI (I Like, I Wish, What If)
+- **Use when**: a small group needs to give feedback on work-in-progress without descending into redesign or defensiveness.
+- **Avoid when**: the work needs a directional decision rather than feedback. Feedback is not a substitute for a decision-maker.
+- **Inputs**: a presented artifact or prototype, a clear question the presenter wants feedback on, a facilitator who keeps statements in the right form.
+- **Output**: a list of likes (what is working and why), wishes (what could be improved), and what-ifs (alternative directions worth exploring).
+- **Good looks like**: feedback is specific to the work shown, the presenter listens without defending, the facilitator catches statements that drift into command form ("you should..."), what-ifs are exploratory not prescriptive.
+- **Common failures**: turning critique into a redesign session, vague likes ("nice work") that carry no signal, wishes that are really commands, the presenter defending instead of listening.
+
+### Heuristic Evaluation
+- **Use when**: quickly finding usability issues against established principles.
+- **Avoid when**: replacing user testing for high-stakes workflows.
+- **Output**: prioritized usability findings and recommended fixes.
+
+### Cognitive Walkthrough
+- **Use when**: checking whether a user can understand and complete a flow without instruction.
+- **Avoid when**: the team needs broad strategic discovery.
+- **Output**: step-by-step usability risks and fixes.
+
+### Design Parity Check
+- **Use when**: a built feature should match its design specification, especially during release readiness or for design system adoption.
+- **Avoid when**: the build is exploratory and the design intent is still evolving.
+- **Inputs**: the design source (Figma file, spec, tokens), the built artifact, and access to inspect both.
+- **Output**: a list of discrepancies categorized as token violations (hardcoded values), spacing or sizing drift, missing states, or interaction differences.
+- **Good looks like**: discrepancies are specific (color X used instead of token Y at location Z), categorized by whether the design or the build is wrong, fed back into the design system so the same drift does not recur.
+- **Common failures**: pixel-counting in screenshots rather than inspecting tokens, treating every difference as a build bug when the spec was ambiguous, producing a list nobody fixes because there is no accountable owner.
+
+### Task Analysis
+- **Use when**: improving a workflow, productivity tool, or user task completion.
+- **Avoid when**: the problem is market-level strategy.
+- **Output**: task steps, decisions, friction, error points, and redesign opportunities.
+
+## Technology And Feasibility
+
+### Architecture Decision Record
+- **Use when**: a decision will be hard to reverse, will be challenged later, or affects more than one team. Examples: which framework, which database, which integration pattern, which design system, which token format.
+- **Avoid when**: the decision is small, reversible, and affects one person. ADR overhead is not free.
+- **Inputs**: the decision question, the forces in tension (technical, organizational, cost, time), the options considered, the chosen option.
+- **Output**: a short markdown document (one to two pages) with title, status, context, decision, and consequences. Stored next to the code or in a `decisions/` folder.
+- **Good looks like**: written in plain language and full sentences, names the alternatives that were rejected and why, lists positive and negative consequences, immutable once accepted (a new ADR supersedes rather than edits an old one).
+- **Common failures**: writing ADRs after the fact for decisions no one will revisit, recording the chosen option without the alternatives, editing accepted ADRs in place rather than superseding them, treating it as architecture documentation rather than decision history.
+
+### C4 Model
+- **Use when**: a software system needs to be explained to a mixed audience and current diagrams are either absent, inconsistent, or too detailed for non-technical stakeholders.
+- **Avoid when**: the system is small, single-purpose, or fully described by its README. Also avoid for products that are mostly customization (Salesforce, SAP) rather than bespoke development.
+- **Inputs**: the system in question, an audience (executives, new engineers, security review, ops), and a target zoom level.
+- **Output**: hierarchical diagrams, system context (level 1, the whole world), container (level 2, deployable units), component (level 3, internals of one container), code (level 4, optional and rarely useful by hand).
+- **Good looks like**: each diagram has a title, legend, and stated audience, the level matches the question being asked, container and component levels do not blur into each other, diagrams are kept in source control and updated with code.
+- **Common failures**: drawing one diagram for all audiences, mixing levels in a single picture, treating boxes-and-lines as the model rather than what the boxes mean, producing a level 4 code diagram by hand.
+
+### Build, Buy, Borrow
+- **Use when**: a capability is needed and the team is debating whether to build it from scratch, buy a vendor product, or borrow open source or an existing internal solution.
+- **Avoid when**: the capability is core to the product's differentiation; that is a build by default.
+- **Inputs**: the capability needed, the time and cost of each path, the long-term ownership cost, the strategic importance of the capability, and the integration surface.
+- **Output**: a comparison across the three paths with one-time cost, ongoing cost, time to value, control, and strategic risk, plus a recommendation.
+- **Good looks like**: the strategic question (is this a differentiator?) is answered before the cost question, the ongoing cost includes maintenance and integration not just license, "borrow" is a real option not an afterthought.
+- **Common failures**: treating "build" as free because labor is internal, choosing "buy" without understanding the integration cost, ignoring the option to borrow because nobody surveyed what exists, making the decision once and never revisiting as the product matures.
+
+### Tradeoff Sliders
+- **Use when**: a decision involves competing qualities (speed vs correctness, cost vs flexibility, scope vs schedule) and stakeholders need to make the tradeoff explicit before scoping work.
+- **Avoid when**: the qualities do not actually trade off, or the conversation is really about a missing constraint.
+- **Inputs**: the qualities under tension (typically three to five), the stakeholders who own the decision, and the project at hand.
+- **Output**: a set of sliders showing each quality's relative priority for this decision, with explicit acknowledgment of what is being deprioritized.
+- **Good looks like**: every quality has a position, no slider is at maximum without something else being lower, the resulting picture survives stress-testing against likely difficult choices.
+- **Common failures**: every slider at maximum because nobody wants to say no, the sliders treated as a wishlist rather than a decision, no documented reference back when scoping conversations happen later.
+
+### Spike Or Build
+- **Use when**: there is uncertainty about whether something is technically feasible, how long it will take, or what shape the solution will have, and the team is about to commit to building it.
+- **Avoid when**: the path is well-understood and the question is just sequencing.
+- **Inputs**: the specific uncertainty in question, the time budget for resolving it, the smallest experiment that would resolve it.
+- **Output**: a time-boxed exploration (a spike) that produces a written learning, a working but throwaway prototype, or both, with a decision on whether to proceed, change direction, or stop.
+- **Good looks like**: the spike has a written question, a time limit, and a written outcome. The output is the answer, not the artifact. The spike's code is explicitly thrown away or rebuilt in production form.
+- **Common failures**: the spike turns into the production code by accident, the time limit is ignored, no learning is written down so the next person re-spikes the same question.
 
 ## Product Strategy
 
